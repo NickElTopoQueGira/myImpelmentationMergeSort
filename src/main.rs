@@ -1,12 +1,12 @@
 fn main() {
-    let arr = [1, 6, 4, 9, 7, 2];
+    let arr = [1.6, 6.4, 4.0, 9.5, 7.6, 2.2];
     let arr_riordinato = merge_sort(&arr);
 
     println!("Array da riordinare {:?}", arr);
     println!("Array riordinato: {:?}", arr_riordinato)
 }
 
-fn merge_sort(arr:&[i32]) -> Vec<i32>{
+fn merge_sort(arr:&[f32]) -> Vec<f32>{
     // Verifica della lunghezza del array
     if arr.len() <= 1{
         return arr.to_vec();
@@ -21,8 +21,8 @@ fn merge_sort(arr:&[i32]) -> Vec<i32>{
     merge(&sx, &dx)
 }
 
-fn merge(sx:&[i32], dx:&[i32]) -> Vec<i32>{
-    let mut result:Vec<i32> = Vec::with_capacity(sx.len() + dx.len());
+fn merge(sx:&[f32], dx:&[f32]) -> Vec<f32>{
+    let mut result:Vec<f32> = Vec::with_capacity(sx.len() + dx.len());
 
     let mut index_i = 0;
     let mut index_j = 0;
