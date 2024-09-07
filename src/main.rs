@@ -1,5 +1,11 @@
+use rand::Rng;
+
 fn main() {
-    let arr = [1.6, 6.4, 4.0, 9.5, 7.6, 2.2];
+    let mut rng = rand::thread_rng();
+    let arr: Vec<f32> = (-1000000..1000000).map(|_| rng.gen_range(-10000000.0..10000000.0)).collect();
+
+
+    // let arr = [1.6, 6.4, 4.0, 9.5, 7.6, 2.2];
     let arr_riordinato = merge_sort(&arr);
 
     println!("Array da riordinare {:?}", arr);
