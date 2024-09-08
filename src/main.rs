@@ -1,11 +1,5 @@
-use rand::Rng;
-
 fn main() {
-    let mut rng = rand::thread_rng();
-    let arr: Vec<f32> = (-1000000..1000000).map(|_| rng.gen_range(-10000000.0..10000000.0)).collect();
-
-
-    // let arr = [1.6, 6.4, 4.0, 9.5, 7.6, 2.2];
+    let arr = [1.6, 6.4, 4.0, 9.5, 7.6, 2.2];
     let arr_riordinato = merge_sort(&arr);
 
     println!("Array da riordinare {:?}", arr);
@@ -20,8 +14,12 @@ fn merge_sort(arr:&[f32]) -> Vec<f32>{
 
     // divisione del array di input in due parti (sx, dx)
     let mid:usize = (arr.len()) / 2;
-    let sx = merge_sort(&arr[..mid]);
-    let dx = merge_sort(&arr[mid..]);
+
+    // calcolo di sx e dx in parallelo
+    let (sx, dx): (Vec<f32>, Vec<f32>) =rayon::join(
+        || merge_sort(&arr[..mid]),
+        || merge_sort(&arr[mid..])
+    );
 
     // valore restituito
     merge(&sx, &dx)
